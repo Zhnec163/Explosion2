@@ -6,33 +6,16 @@ public class FissileCube : MonoBehaviour
     private CubeFuse _cubeFuse;
     private CubeDivider _cubeDivider;
 
-    private void Awake()
+    public void Init(int chance, Vector3 scale, float pushingForce, float pushingRadius)
     {
-        if (TryGetComponent(out CubeFuse cubeFuse))
-        {
-            _cubeFuse = cubeFuse;
-        }
-
-        if (TryGetComponent(out CubeDivider cubeDivider))
-        {
-            _cubeDivider = cubeDivider;
-        }
+        GetComponent<MeshRenderer>().material.color = RandomHelper.GetRandomColor();
+        _cubeFuse.Init(pushingForce, pushingRadius);
+        _cubeDivider.Init(chance, scale);
     }
-
+    
     public void ProcessClick()
     {
         TryToSeparate();
-    }
-
-    public void Init(int chance, Vector3 scale, float pushingForce, float pushingRadius)
-    {
-        if (TryGetComponent(out MeshRenderer meshRenderer))
-        {
-            meshRenderer.material.color = RandomHelper.GetRandomColor();
-        }
-
-        _cubeFuse.Init(pushingForce, pushingRadius);
-        _cubeDivider.Init(chance, scale);
     }
 
     private void TryToSeparate()
