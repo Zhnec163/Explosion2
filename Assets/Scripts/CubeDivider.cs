@@ -30,11 +30,11 @@ public class CubeDivider : MonoBehaviour
 
         for (int i = 0; i < cubesCount; i++)
         {
+            FissileCube fissileCube = Instantiate(_fissileCube, transform.position, Quaternion.identity);
+            Vector3 scale = transform.localScale / _scaleDivider;
+            int chance = _divisionChance / _chanceDivider;
             float forceMultiplier = 1.5F;
             float radiusMultiplier = 1.5F;
-            FissileCube fissileCube = Instantiate(_fissileCube, transform.position, Quaternion.identity);
-            int chance = _divisionChance / _chanceDivider;
-            Vector3 scale = transform.localScale / _scaleDivider;
             float pushingForce = _cubeFuse.PushingForce * forceMultiplier;
             float pushingRadius = _cubeFuse.PushingRadius * radiusMultiplier;
             fissileCube.Init(chance, scale, pushingForce, pushingRadius);
